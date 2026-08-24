@@ -8,9 +8,10 @@ services:
             - "3306:3306"
 
         environment:
+            MYSQL_ROOT_PASSWORD: "root_password"
             MYSQL_DATABASE: barberboss_db
             MYSQL_USER: barberboss_user
-            MYSQL_PASSWORD: '@Password123'
+            MYSQL_PASSWORD: "@Password123"
 
         volumes:
             - mysql_data:/var/lib/mysql
