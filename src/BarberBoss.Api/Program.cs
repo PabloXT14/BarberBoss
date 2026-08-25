@@ -1,4 +1,6 @@
 using BarberBoss.Api.Filters;
+using BarberBoss.Api.Middlewares;
+using BarberBoss.Exception;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,13 +25,16 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+// Middleware to handle culture based on Accept-Language header
+app.UseMiddleware<CultureMiddleware>();
+
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
 
 app.MapGet("/health", () =>
 {
-    return Results.Ok(new { status = "Healthy" });
+    return Results.Ok(new { status = ResourceErrorMessages.HEALTH });
 });
 
 app.MapControllers();
