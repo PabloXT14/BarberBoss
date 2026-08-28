@@ -1,3 +1,4 @@
+using AutoMapper;
 using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
 using BarberBoss.Domain.Entities;
@@ -11,38 +12,30 @@ public class RegisterBillingUseCase : IRegisterBillingUseCase
 {
     private readonly IBillingsWriteOnlyRepository _billingRepository;
     private readonly IUnitOfWork _unitOfWork;
+    private readonly IMapper _mapper;
 
-    public RegisterBillingUseCase(IBillingsWriteOnlyRepository billingRepository, IUnitOfWork unitOfWork)
+    public RegisterBillingUseCase(
+        IBillingsWriteOnlyRepository billingRepository,
+        IUnitOfWork unitOfWork,
+        IMapper mapper)
     {
         _billingRepository = billingRepository;
         _unitOfWork = unitOfWork;
+        _mapper = mapper;
     }
 
-    public async Task<ResponseRegisteredBillingJson> Execute(RequestBillingJson requestBillingJson)
+    public async Task<ResponseRegisteredBillingJson> Execute(RequestBillingJson request)
     {
-        Validate(requestBillingJson);
+        Validate(request);
 
-        var entity = new Billing
-        {
-            Date = requestBillingJson.Date,
-            BarberName = requestBillingJson.BarberName,
-            ClientName = requestBillingJson.ClientName,
-            ServiceName = requestBillingJson.ServiceName,
-            Amount = requestBillingJson.Amount,
-            PaymentMethod = (BarberBoss.Domain.Enums.PaymentMethod)requestBillingJson.PaymentMethod,
-            Status = (BarberBoss.Domain.Enums.BillingStatus)requestBillingJson.Status,
-            Notes = requestBillingJson.Notes,
-            CreatedAt = DateTime.Now,
-            UpdatedAt = DateTime.Now
-        };
+        var entity = _mapper.Map<Billing>(request);
 
         await _billingRepository.Add(entity);
         await _unitOfWork.Commit();
 
-        return new ResponseRegisteredBillingJson
-        {
-            Id = entity.Id,
-        };
+        var response = _mapper.Map<ResponseRegisteredBillingJson>(entity);
+
+        return response;
     }
 
     private void Validate(RequestBillingJson requestBillingJson)
