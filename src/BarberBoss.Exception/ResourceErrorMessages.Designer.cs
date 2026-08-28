@@ -81,4 +81,9 @@ public class ResourceErrorMessages
 	/// Looks up a localized string similar to Invalid status..
 	/// </summary>
 	public static string INVALID_STATUS => ResourceManager.GetString("INVALID_STATUS", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Billing not found..
+	/// </summary>
+	public static string BILLING_NOT_FOUND => ResourceManager.GetString("BILLING_NOT_FOUND", Culture);
 }

@@ -43,4 +43,7 @@
     <data name="INVALID_STATUS" xml:space="preserve">
         <value>Estado inválido.</value>
     </data>
+    <data name="BILLING_NOT_FOUND" xml:space="preserve">
+        <value>Faturação não encontrada.</value>
+    </data>
 </root>

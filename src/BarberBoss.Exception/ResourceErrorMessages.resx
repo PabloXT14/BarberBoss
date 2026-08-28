@@ -43,4 +43,7 @@
     <data name="INVALID_STATUS" xml:space="preserve">
         <value>Invalid status.</value>
     </data>
+    <data name="BILLING_NOT_FOUND" xml:space="preserve">
+        <value>Billing not found.</value>
+    </data>
 </root>
