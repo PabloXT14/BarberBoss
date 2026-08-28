@@ -22,4 +22,25 @@
     <data name="HEALTH" xml:space="preserve">
         <value>Healthy.</value>
     </data>
+    <data name="BILLING_DATE_CANNOT_BE_FUTURE" xml:space="preserve">
+        <value>Billing date cannot be in the future.</value>
+    </data>
+    <data name="BARBER_NAME_REQUIRED" xml:space="preserve">
+        <value>Barber name is required.</value>
+    </data>
+    <data name="CLIENT_NAME_REQUIRED" xml:space="preserve">
+        <value>Client name is required.</value>
+    </data>
+    <data name="SERVICE_NAME_REQUIRED" xml:space="preserve">
+        <value>Service name is required.</value>
+    </data>
+    <data name="AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>Amount must be greater than zero.</value>
+    </data>
+    <data name="INVALID_PAYMENT_METHOD" xml:space="preserve">
+        <value>Invalid payment method.</value>
+    </data>
+    <data name="INVALID_STATUS" xml:space="preserve">
+        <value>Invalid status.</value>
+    </data>
 </root>

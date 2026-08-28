@@ -46,4 +46,39 @@ public class ResourceErrorMessages
 	/// Looks up a localized string similar to Healthy..
 	/// </summary>
 	public static string HEALTH => ResourceManager.GetString("HEALTH", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Billing date cannot be in the future..
+	/// </summary>
+	public static string BILLING_DATE_CANNOT_BE_FUTURE => ResourceManager.GetString("BILLING_DATE_CANNOT_BE_FUTURE", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Barber name is required..
+	/// </summary>
+	public static string BARBER_NAME_REQUIRED => ResourceManager.GetString("BARBER_NAME_REQUIRED", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Client name is required..
+	/// </summary>
+	public static string CLIENT_NAME_REQUIRED => ResourceManager.GetString("CLIENT_NAME_REQUIRED", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Service name is required..
+	/// </summary>
+	public static string SERVICE_NAME_REQUIRED => ResourceManager.GetString("SERVICE_NAME_REQUIRED", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Amount must be greater than zero..
+	/// </summary>
+	public static string AMOUNT_MUST_BE_GREATER_THAN_ZERO => ResourceManager.GetString("AMOUNT_MUST_BE_GREATER_THAN_ZERO", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Invalid payment method..
+	/// </summary>
+	public static string INVALID_PAYMENT_METHOD => ResourceManager.GetString("INVALID_PAYMENT_METHOD", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Invalid status..
+	/// </summary>
+	public static string INVALID_STATUS => ResourceManager.GetString("INVALID_STATUS", Culture);
 }

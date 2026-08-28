@@ -13,6 +13,7 @@ public static class DependencyInjectionExtension
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
         AddDbContext(services, configuration);
+        AddRepositories(services);
     }
 
     public static void AddRepositories(this IServiceCollection services)

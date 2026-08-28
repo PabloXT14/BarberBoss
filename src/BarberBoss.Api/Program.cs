@@ -1,5 +1,6 @@
 using BarberBoss.Api.Filters;
 using BarberBoss.Api.Middlewares;
+using BarberBoss.Application;
 using BarberBoss.Exception;
 using BarberBoss.Infrastructure;
 
@@ -16,6 +17,7 @@ builder.Services.AddMvc(options =>
 });
 
 builder.Services.AddInfrastructure(builder.Configuration);
+builder.Services.AddApplication();
 
 var app = builder.Build();
 

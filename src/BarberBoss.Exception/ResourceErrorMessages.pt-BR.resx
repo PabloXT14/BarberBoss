@@ -12,7 +12,7 @@
     <resheader name="writer">
         <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
     </resheader>
-     <metadata name="ResourceReportGenerationMessages.GenerateResource" xml:space="preserve">
+    <metadata name="ResourceReportGenerationMessages.GenerateResource" xml:space="preserve">
         <value>Public</value>
     </metadata>
     <!--Data-->
@@ -21,5 +21,26 @@
     </data>
     <data name="HEALTH" xml:space="preserve">
         <value>Saudável.</value>
+    </data>
+    <data name="BILLING_DATE_CANNOT_BE_FUTURE" xml:space="preserve">
+        <value>A data do faturamento não pode ser futura.</value>
+    </data>
+    <data name="BARBER_NAME_REQUIRED" xml:space="preserve">
+        <value>O nome do barbeiro é obrigatório.</value>
+    </data>
+    <data name="CLIENT_NAME_REQUIRED" xml:space="preserve">
+        <value>O nome do cliente é obrigatório.</value>
+    </data>
+    <data name="SERVICE_NAME_REQUIRED" xml:space="preserve">
+        <value>O nome do serviço é obrigatório.</value>
+    </data>
+    <data name="AMOUNT_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>O valor deve ser superior a zero.</value>
+    </data>
+    <data name="INVALID_PAYMENT_METHOD" xml:space="preserve">
+        <value>Método de pagamento inválido.</value>
+    </data>
+    <data name="INVALID_STATUS" xml:space="preserve">
+        <value>Status inválido.</value>
     </data>
 </root>

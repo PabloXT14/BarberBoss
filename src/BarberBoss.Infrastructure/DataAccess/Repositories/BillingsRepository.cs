@@ -73,8 +73,8 @@ internal class BillingsRepository : IBillingsWriteOnlyRepository, IBillingsReadO
 
         return await _dbContext.Billings
             .AsNoTracking()
-            .Where(billing => billing.CreatedAt >= startDate && billing.CreatedAt <= endDate)
-            .OrderBy(billing => billing.CreatedAt)
+            .Where(billing => billing.Date >= startDate && billing.Date <= endDate)
+            .OrderBy(billing => billing.Date)
             .ThenBy(billing => billing.ServiceName)
             .ToListAsync();
     }
