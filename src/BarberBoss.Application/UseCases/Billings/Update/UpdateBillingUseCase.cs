@@ -36,6 +36,8 @@ public class UpdateBillingUseCase : IUpdateBillingUseCase
 
         _mapper.Map(request, entity);
 
+        entity.UpdatedAt = DateTime.Now;
+
         _billingsUpdateRepository.Update(entity);
 
         await _unitOfWork.Commit();
