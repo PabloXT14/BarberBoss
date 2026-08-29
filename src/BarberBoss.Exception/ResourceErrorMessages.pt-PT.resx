@@ -46,4 +46,34 @@
     <data name="BILLING_NOT_FOUND" xml:space="preserve">
         <value>Faturação não encontrada.</value>
     </data>
+    <data name="PAGE_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>A página deve ser superior a 0.</value>
+    </data>
+    <data name="PAGE_SIZE_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>O tamanho da página deve ser superior a 0.</value>
+    </data>
+    <data name="END_DATE_IS_REQUIRED_WHEN_START_DATE_IS_PROVIDED" xml:space="preserve">
+        <value>A data final é obrigatória quando a data inicial é indicada.</value>
+    </data>
+    <data name="START_DATE_IS_REQUIRED_WHEN_END_DATE_IS_PROVIDED" xml:space="preserve">
+        <value>A data inicial é obrigatória quando a data final é indicada.</value>
+    </data>
+    <data name="END_DATE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_START_DATE" xml:space="preserve">
+        <value>A data final deve ser superior ou igual à data inicial.</value>
+    </data>
+    <data name="MAX_AMOUNT_IS_REQUIRED_WHEN_MIN_AMOUNT_IS_PROVIDED" xml:space="preserve">
+        <value>O valor máximo é obrigatório quando o valor mínimo é indicado.</value>
+    </data>
+    <data name="MIN_AMOUNT_IS_REQUIRED_WHEN_MAX_AMOUNT_IS_PROVIDED" xml:space="preserve">
+        <value>O valor mínimo é obrigatório quando o valor máximo é indicado.</value>
+    </data>
+    <data name="MIN_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO" xml:space="preserve">
+        <value>O valor mínimo deve ser superior ou igual a 0.</value>
+    </data>
+    <data name="MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO" xml:space="preserve">
+        <value>O valor máximo deve ser superior ou igual a 0.</value>
+    </data>
+    <data name="MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_MIN_AMOUNT" xml:space="preserve">
+        <value>O valor máximo deve ser superior ou igual ao valor mínimo.</value>
+    </data>
 </root>

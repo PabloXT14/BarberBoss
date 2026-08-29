@@ -1,4 +1,5 @@
 using BarberBoss.Application.UseCases.Billings.Delete;
+using BarberBoss.Application.UseCases.Billings.GetAll;
 using BarberBoss.Application.UseCases.Billings.GetById;
 using BarberBoss.Application.UseCases.Billings.Register;
 using BarberBoss.Application.UseCases.Billings.Update;
@@ -23,6 +24,19 @@ public class BillingsController : ControllerBase
         var response = await useCase.Execute(request);
 
         return Created(string.Empty, response);
+    }
+
+    [HttpGet]
+    [ProducesResponseType(typeof(ResponseGetAllBillingsJson), StatusCodes.Status200OK)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetAll(
+        [FromServices] IGetAllBillingsUseCase useCase,
+        [FromQuery] RequestGetAllBillingsJson request
+    )
+    {
+        var response = await useCase.Execute(request);
+
+        return Ok(response);
     }
 
     [HttpGet("{id}")]

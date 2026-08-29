@@ -46,4 +46,34 @@
     <data name="BILLING_NOT_FOUND" xml:space="preserve">
         <value>Billing not found.</value>
     </data>
+    <data name="PAGE_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>Page must be greater than 0.</value>
+    </data>
+    <data name="PAGE_SIZE_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>PageSize must be greater than 0.</value>
+    </data>
+    <data name="END_DATE_IS_REQUIRED_WHEN_START_DATE_IS_PROVIDED" xml:space="preserve">
+        <value>EndDate is required when StartDate is provided.</value>
+    </data>
+    <data name="START_DATE_IS_REQUIRED_WHEN_END_DATE_IS_PROVIDED" xml:space="preserve">
+        <value>StartDate is required when EndDate is provided.</value>
+    </data>
+    <data name="END_DATE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_START_DATE" xml:space="preserve">
+        <value>EndDate must be greater than or equal to StartDate.</value>
+    </data>
+    <data name="MAX_AMOUNT_IS_REQUIRED_WHEN_MIN_AMOUNT_IS_PROVIDED" xml:space="preserve">
+        <value>MaxAmount is required when MinAmount is provided.</value>
+    </data>
+    <data name="MIN_AMOUNT_IS_REQUIRED_WHEN_MAX_AMOUNT_IS_PROVIDED" xml:space="preserve">
+        <value>MinAmount is required when MaxAmount is provided.</value>
+    </data>
+    <data name="MIN_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO" xml:space="preserve">
+        <value>MinAmount must be greater than or equal to 0.</value>
+    </data>
+    <data name="MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO" xml:space="preserve">
+        <value>MaxAmount must be greater than or equal to 0.</value>
+    </data>
+    <data name="MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_MIN_AMOUNT" xml:space="preserve">
+        <value>MaxAmount must be greater than or equal to MinAmount.</value>
+    </data>
 </root>

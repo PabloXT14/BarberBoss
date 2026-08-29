@@ -86,4 +86,54 @@ public class ResourceErrorMessages
 	/// Looks up a localized string similar to Billing not found..
 	/// </summary>
 	public static string BILLING_NOT_FOUND => ResourceManager.GetString("BILLING_NOT_FOUND", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Page must be greater than 0..
+	/// </summary>
+	public static string PAGE_MUST_BE_GREATER_THAN_ZERO => ResourceManager.GetString("PAGE_MUST_BE_GREATER_THAN_ZERO", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to PageSize must be greater than 0..
+	/// </summary>
+	public static string PAGE_SIZE_MUST_BE_GREATER_THAN_ZERO => ResourceManager.GetString("PAGE_SIZE_MUST_BE_GREATER_THAN_ZERO", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to EndDate is required when StartDate is provided..
+	/// </summary>
+	public static string END_DATE_IS_REQUIRED_WHEN_START_DATE_IS_PROVIDED => ResourceManager.GetString("END_DATE_IS_REQUIRED_WHEN_START_DATE_IS_PROVIDED", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to StartDate is required when EndDate is provided..
+	/// </summary>
+	public static string START_DATE_IS_REQUIRED_WHEN_END_DATE_IS_PROVIDED => ResourceManager.GetString("START_DATE_IS_REQUIRED_WHEN_END_DATE_IS_PROVIDED", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to EndDate must be greater than or equal to StartDate..
+	/// </summary>
+	public static string END_DATE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_START_DATE => ResourceManager.GetString("END_DATE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_START_DATE", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to MaxAmount is required when MinAmount is provided..
+	/// </summary>
+	public static string MAX_AMOUNT_IS_REQUIRED_WHEN_MIN_AMOUNT_IS_PROVIDED => ResourceManager.GetString("MAX_AMOUNT_IS_REQUIRED_WHEN_MIN_AMOUNT_IS_PROVIDED", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to MinAmount is required when MaxAmount is provided..
+	/// </summary>
+	public static string MIN_AMOUNT_IS_REQUIRED_WHEN_MAX_AMOUNT_IS_PROVIDED => ResourceManager.GetString("MIN_AMOUNT_IS_REQUIRED_WHEN_MAX_AMOUNT_IS_PROVIDED", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to MinAmount must be greater than or equal to 0..
+	/// </summary>
+	public static string MIN_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO => ResourceManager.GetString("MIN_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to MaxAmount must be greater than or equal to 0..
+	/// </summary>
+	public static string MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO => ResourceManager.GetString("MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to MaxAmount must be greater than or equal to MinAmount..
+	/// </summary>
+	public static string MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_MIN_AMOUNT => ResourceManager.GetString("MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_MIN_AMOUNT", Culture);
 }

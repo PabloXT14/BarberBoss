@@ -46,4 +46,34 @@
     <data name="BILLING_NOT_FOUND" xml:space="preserve">
         <value>Facturation introuvable.</value>
     </data>
+    <data name="PAGE_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>La page doit être supérieure à 0.</value>
+    </data>
+    <data name="PAGE_SIZE_MUST_BE_GREATER_THAN_ZERO" xml:space="preserve">
+        <value>La taille de la page doit être supérieure à 0.</value>
+    </data>
+    <data name="END_DATE_IS_REQUIRED_WHEN_START_DATE_IS_PROVIDED" xml:space="preserve">
+        <value>La date de fin est obligatoire lorsque la date de début est renseignée.</value>
+    </data>
+    <data name="START_DATE_IS_REQUIRED_WHEN_END_DATE_IS_PROVIDED" xml:space="preserve">
+        <value>La date de début est obligatoire lorsque la date de fin est renseignée.</value>
+    </data>
+    <data name="END_DATE_MUST_BE_GREATER_THAN_OR_EQUAL_TO_START_DATE" xml:space="preserve">
+        <value>La date de fin doit être supérieure ou égale à la date de début.</value>
+    </data>
+    <data name="MAX_AMOUNT_IS_REQUIRED_WHEN_MIN_AMOUNT_IS_PROVIDED" xml:space="preserve">
+        <value>Le montant maximum est obligatoire lorsque le montant minimum est renseigné.</value>
+    </data>
+    <data name="MIN_AMOUNT_IS_REQUIRED_WHEN_MAX_AMOUNT_IS_PROVIDED" xml:space="preserve">
+        <value>Le montant minimum est obligatoire lorsque le montant maximum est renseigné.</value>
+    </data>
+    <data name="MIN_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO" xml:space="preserve">
+        <value>Le montant minimum doit être supérieur ou égal à 0.</value>
+    </data>
+    <data name="MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_ZERO" xml:space="preserve">
+        <value>Le montant maximum doit être supérieur ou égal à 0.</value>
+    </data>
+    <data name="MAX_AMOUNT_MUST_BE_GREATER_THAN_OR_EQUAL_TO_MIN_AMOUNT" xml:space="preserve">
+        <value>Le montant maximum doit être supérieur ou égal au montant minimum.</value>
+    </data>
 </root>
