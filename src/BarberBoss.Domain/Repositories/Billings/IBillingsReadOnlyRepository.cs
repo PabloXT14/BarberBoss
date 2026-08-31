@@ -9,4 +9,5 @@ public interface IBillingsReadOnlyRepository
     Task<ResponseRepositoryGetAllBillingsJson<Billing>> GetAll(RequestGetAllBillingsJson request);
     Task<Billing?> GetById(Guid id);
     Task<List<Billing>> FilterByMonth(DateOnly month);
+    Task<List<Billing>> FilterByDateRange(DateOnly startDate, DateOnly endDate);
 }

@@ -1,6 +1,7 @@
 using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
 using BarberBoss.Domain.Entities;
+using BarberBoss.Domain.Enums;
 using BarberBoss.Domain.Repositories.Billings;
 using Microsoft.EntityFrameworkCore;
 
@@ -147,6 +148,21 @@ internal class BillingsRepository : IBillingsWriteOnlyRepository, IBillingsReadO
         return await _dbContext.Billings
             .AsNoTracking()
             .Where(billing => billing.Date >= startDate && billing.Date <= endDate)
+            .OrderBy(billing => billing.Date)
+            .ThenBy(billing => billing.ServiceName)
+            .ToListAsync();
+    }
+
+    public async Task<List<Billing>> FilterByDateRange(DateOnly startDate, DateOnly endDate)
+    {
+        var startDateTime = new DateTime(year: startDate.Year, month: startDate.Month, day: startDate.Day).Date; // Date -> return a date with time set to 00:00:00 (midnight)
+
+        var endDateTime = new DateTime(year: endDate.Year, month: endDate.Month, day: endDate.Day, hour: 23, minute: 59, second: 59); // Set the time to the end of the day
+
+        return await _dbContext.Billings
+            .AsNoTracking()
+            .Where(billing => billing.Date >= startDateTime && billing.Date <= endDateTime)
+            .Where(billing => billing.Status == BillingStatus.Paid)
             .OrderBy(billing => billing.Date)
             .ThenBy(billing => billing.ServiceName)
             .ToListAsync();
