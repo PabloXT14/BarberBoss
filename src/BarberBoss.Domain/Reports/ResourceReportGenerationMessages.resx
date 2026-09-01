@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>2.0</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <metadata name="ResourceReportGenerationMessages.GenerateResource" xml:space="preserve">
+        <value>Public</value>
+    </metadata>
+    <!--Data-->
+    <data name="TITLE" xml:space="preserve">
+        <value>Title</value>
+    </data>
+    <data name="DATE" xml:space="preserve">
+        <value>Date</value>
+    </data>
+    <data name="PAYMENT_METHOD" xml:space="preserve">
+        <value>Payment type</value>
+    </data>
+    <data name="AMOUNT" xml:space="preserve">
+        <value>Amount</value>
+    </data>
+    <data name="DESCRIPTION" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="CASH" xml:space="preserve">
+        <value>Cash</value>
+    </data>
+    <data name="CREDIT_CARD" xml:space="preserve">
+        <value>Credit card</value>
+    </data>
+    <data name="DEBIT_CARD" xml:space="preserve">
+        <value>Debit card</value>
+    </data>
+    <data name="PIX" xml:space="preserve">
+        <value>Pix</value>
+    </data>
+    <data name="OTHER" xml:space="preserve">
+        <value>Other</value>
+    </data>
+</root>
