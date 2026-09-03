@@ -93,7 +93,10 @@ public class GenerateBillingsReportUseCase : IGenerateBillingsReportUseCase
     private void InsertBilling(IXLWorksheet worksheet, Billing billing, int row, CultureInfo culture)
     {
         worksheet.Cell($"A{row}").Value = billing.ServiceName;
-        worksheet.Cell($"B{row}").Value = billing.Date.ToString("dd/MM/yyyy", culture);
+
+        worksheet.Cell($"B{row}").Value = billing.Date;
+        worksheet.Cell($"B{row}").Style.DateFormat.Format = culture.DateTimeFormat.ShortDatePattern; // Use the short date pattern of the current culture
+
         worksheet.Cell($"C{row}").Value = billing.PaymentMethod.PaymentMethodToString();
 
         worksheet.Cell($"D{row}").Value = billing.Amount;
