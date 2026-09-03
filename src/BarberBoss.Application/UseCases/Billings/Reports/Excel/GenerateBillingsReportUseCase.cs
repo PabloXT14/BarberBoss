@@ -1,3 +1,4 @@
+using System.Globalization;
 using BarberBoss.Application.UseCases.Billings.Reports.Excel.Colors;
 using BarberBoss.Communication.Requests;
 using BarberBoss.Domain.Entities;
@@ -12,7 +13,6 @@ namespace BarberBoss.Application.UseCases.Billings.Reports.Excel;
 
 public class GenerateBillingsReportUseCase : IGenerateBillingsReportUseCase
 {
-    private const string CURRENCY_SYMBOL = "R$";
     private readonly IBillingsReadOnlyRepository _billingsReadOnlyRepository;
 
     public GenerateBillingsReportUseCase(IBillingsReadOnlyRepository billingsReadOnlyRepository)
@@ -39,6 +39,8 @@ public class GenerateBillingsReportUseCase : IGenerateBillingsReportUseCase
             return [];
         }
 
+        var culture = CultureInfo.CurrentCulture; // Get the current culture from the request context
+
         using var workbook = new XLWorkbook();
 
         workbook.Author = "BarberBoss";
@@ -55,7 +57,7 @@ public class GenerateBillingsReportUseCase : IGenerateBillingsReportUseCase
         var row = 2;
         foreach (var billing in billings)
         {
-            InsertBilling(worksheet, billing, row);
+            InsertBilling(worksheet, billing, row, culture);
 
             row++;
         }
@@ -88,14 +90,14 @@ public class GenerateBillingsReportUseCase : IGenerateBillingsReportUseCase
 
     }
 
-    private void InsertBilling(IXLWorksheet worksheet, Billing billing, int row)
+    private void InsertBilling(IXLWorksheet worksheet, Billing billing, int row, CultureInfo culture)
     {
         worksheet.Cell($"A{row}").Value = billing.ServiceName;
-        worksheet.Cell($"B{row}").Value = billing.Date.ToString("dd/MM/yyyy");
+        worksheet.Cell($"B{row}").Value = billing.Date.ToString("dd/MM/yyyy", culture);
         worksheet.Cell($"C{row}").Value = billing.PaymentMethod.PaymentMethodToString();
 
         worksheet.Cell($"D{row}").Value = billing.Amount;
-        worksheet.Cell($"D{row}").Style.NumberFormat.Format = $"{CURRENCY_SYMBOL} #,##0.00";
+        worksheet.Cell($"D{row}").Style.NumberFormat.Format = BuildCurrencyFormat(culture);
 
         worksheet.Cell($"E{row}").Value = billing.Notes;
 
@@ -105,5 +107,14 @@ public class GenerateBillingsReportUseCase : IGenerateBillingsReportUseCase
         worksheet.Cell($"C{row}").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
         worksheet.Cell($"D{row}").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Right);
         worksheet.Cell($"E{row}").Style.Alignment.SetHorizontal(XLAlignmentHorizontalValues.Center);
+    }
+
+    private static string BuildCurrencyFormat(CultureInfo culture)
+    {
+        var symbol = culture.NumberFormat.CurrencySymbol;
+        var lcidHex = culture.LCID.ToString("X", CultureInfo.InvariantCulture);
+
+        // pt-BR -> [$R$-416]#,##0.00  |  en-US -> [$$-409]#,##0.00
+        return $"[${symbol}-{lcidHex}] #,##0.00";
     }
 }

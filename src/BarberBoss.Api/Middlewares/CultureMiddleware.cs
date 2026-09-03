@@ -4,6 +4,13 @@ namespace BarberBoss.Api.Middlewares;
 
 public class CultureMiddleware
 {
+    // Monta a lista de nomes suportados uma única vez (não a cada request) e usa HashSet pra lookup O(1)
+    private static readonly HashSet<string> SupportedCultureNames =
+       CultureInfo.GetCultures(CultureTypes.AllCultures)
+           .Select(culture => culture.Name)
+           .Where(name => !string.IsNullOrWhiteSpace(name))
+           .ToHashSet(StringComparer.OrdinalIgnoreCase);
+
     private readonly RequestDelegate _next;
 
     public CultureMiddleware(RequestDelegate next)
@@ -13,17 +20,21 @@ public class CultureMiddleware
 
     public async Task Invoke(HttpContext context)
     {
-        var supportedCultures = CultureInfo.GetCultures(CultureTypes.AllCultures).ToList();
-
         var requestedCulture = context.Request.Headers.AcceptLanguage.FirstOrDefault();
 
-        var cultureInfo = new CultureInfo("en"); // Default culture language
+        var cultureInfo = new CultureInfo("en-US"); // Default culture language (specific not neutral for currency formatting)
 
         // Obs: se a primeira condição for falsa, a segunda nem será checada pelo .NET (por conta do &&), evitando assim um processamento desnecessário
         if (!string.IsNullOrWhiteSpace(requestedCulture)
-        && supportedCultures.Exists(language => language.Name.Equals(requestedCulture, StringComparison.OrdinalIgnoreCase)))
+        && SupportedCultureNames.Contains(requestedCulture))
         {
-            cultureInfo = new CultureInfo(requestedCulture);
+            var matchedCulture = CultureInfo.GetCultureInfo(requestedCulture);
+
+            // Cultura neutra (ex.: "fr", "en", "pt") não carrega símbolo de moeda/formatação de número —
+            // converte pra cultura específica padrão daquele idioma (ex.: "fr-FR", "en-US", "pt-BR")
+            cultureInfo = matchedCulture.IsNeutralCulture
+                ? CultureInfo.CreateSpecificCulture(matchedCulture.Name)
+                : matchedCulture;
         }
 
         CultureInfo.CurrentCulture = cultureInfo;
