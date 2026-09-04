@@ -11,11 +11,11 @@ using ClosedXML.Excel;
 
 namespace BarberBoss.Application.UseCases.Billings.Reports.Excel;
 
-public class GenerateBillingsReportUseCase : IGenerateBillingsReportUseCase
+public class GenerateBillingsReportExcelUseCase : IGenerateBillingsReportExcelUseCase
 {
     private readonly IBillingsReadOnlyRepository _billingsReadOnlyRepository;
 
-    public GenerateBillingsReportUseCase(IBillingsReadOnlyRepository billingsReadOnlyRepository)
+    public GenerateBillingsReportExcelUseCase(IBillingsReadOnlyRepository billingsReadOnlyRepository)
     {
         _billingsReadOnlyRepository = billingsReadOnlyRepository;
     }

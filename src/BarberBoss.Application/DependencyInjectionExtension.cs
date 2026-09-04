@@ -35,6 +35,6 @@ public static class DependencyInjectionExtension
         services.AddScoped<IUpdateBillingUseCase, UpdateBillingUseCase>();
         services.AddScoped<IDeleteBillingUseCase, DeleteBillingUseCase>();
 
-        services.AddScoped<IGenerateBillingsReportUseCase, GenerateBillingsReportUseCase>();
+        services.AddScoped<IGenerateBillingsReportExcelUseCase, GenerateBillingsReportExcelUseCase>();
     }
 }

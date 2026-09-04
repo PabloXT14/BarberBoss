@@ -16,7 +16,7 @@ public class ReportsController : ControllerBase
     [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> GetExcel(
         [FromQuery] RequestGenerateBillingsReportJson request,
-        [FromServices] IGenerateBillingsReportUseCase useCase
+        [FromServices] IGenerateBillingsReportExcelUseCase useCase
     )
     {
         byte[] file = await useCase.Execute(request);
