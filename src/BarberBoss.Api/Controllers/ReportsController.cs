@@ -1,5 +1,6 @@
 using System.Net.Mime;
 using BarberBoss.Application.UseCases.Billings.Reports.Excel;
+using BarberBoss.Application.UseCases.Billings.Reports.Pdf;
 using BarberBoss.Communication.Requests;
 using BarberBoss.Communication.Responses;
 using Microsoft.AspNetCore.Mvc;
@@ -26,6 +27,30 @@ public class ReportsController : ControllerBase
             return File(
                 file,
                 MediaTypeNames.Application.Octet,
+                "report.xlsx"
+            );
+        }
+
+        return NoContent();
+    }
+
+
+    [HttpGet("pdf")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status204NoContent)]
+    [ProducesResponseType(typeof(ResponseErrorJson), StatusCodes.Status400BadRequest)]
+    public async Task<IActionResult> GetPdf(
+        [FromQuery] RequestGenerateBillingsReportJson request,
+        [FromServices] IGenerateBillingsReportPdfUseCase useCase
+    )
+    {
+        byte[] file = await useCase.Execute(request);
+
+        if (file.Length > 0)
+        {
+            return File(
+                file,
+                MediaTypeNames.Application.Pdf,
                 "report.xlsx"
             );
         }
