@@ -46,4 +46,7 @@
     <data name="OTHER" xml:space="preserve">
         <value>Autre</value>
     </data>
+    <data name="BILLINGS_FOR" xmlSpace="preserve">
+        <value>Facturation pour</value>
+    </data>
 </root>

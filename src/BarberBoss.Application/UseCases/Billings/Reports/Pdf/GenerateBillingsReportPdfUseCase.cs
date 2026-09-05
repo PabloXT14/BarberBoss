@@ -1,14 +1,15 @@
 using System.Globalization;
-using BarberBoss.Application.UseCases.Billings.Reports.Excel.Colors;
+using System.Reflection;
+using BarberBoss.Application.UseCases.Billings.Reports.Pdf.Colors;
 using BarberBoss.Application.UseCases.Billings.Reports.Pdf.Fonts;
 using BarberBoss.Communication.Requests;
-using BarberBoss.Domain.Entities;
-using BarberBoss.Domain.Extensions;
 using BarberBoss.Domain.Reports;
 using BarberBoss.Domain.Repositories.Billings;
 using BarberBoss.Exception;
 using BarberBoss.Exception.ExceptionsBase;
-using ClosedXML.Excel;
+using MigraDoc.DocumentObjectModel;
+using MigraDoc.DocumentObjectModel.Tables;
+using MigraDoc.Rendering;
 using PdfSharp.Fonts;
 
 namespace BarberBoss.Application.UseCases.Billings.Reports.Pdf;
@@ -46,7 +47,83 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
         }
 
         var culture = CultureInfo.CurrentCulture; // Get the current culture from the request context
+        var document = CreateDocument(startDate: request.StartDate, endDate: request.EndDate, culture: culture);
+        var page = CreatePage(document);
 
-        return [];
+        CreateHeaderWithLogoAndName(page);
+
+        return RenderDocument(document);
+    }
+
+    private Document CreateDocument(DateOnly startDate, DateOnly endDate, CultureInfo culture)
+    {
+        var document = new Document();
+
+        document.Info.Title = $"{ResourceReportGenerationMessages.BILLINGS_FOR} {startDate.ToString("d", culture)} - {endDate.ToString("d", culture)}";
+        document.Info.Author = "BarberBoss";
+
+        var styles = document.Styles["Normal"];
+        styles!.Font.Name = FontsHelper.ROBOTO_REGULAR;
+
+        return document;
+    }
+
+    private Section CreatePage(Document document)
+    {
+        var section = document.AddSection();
+
+        section.PageSetup = document.DefaultPageSetup.Clone();
+
+        section.PageSetup.PageFormat = PageFormat.A4;
+        section.PageSetup.TopMargin = 50;
+        section.PageSetup.BottomMargin = 50;
+        section.PageSetup.LeftMargin = 40;
+        section.PageSetup.RightMargin = 40;
+
+        return section;
+    }
+
+    private void CreateHeaderWithLogoAndName(Section page)
+    {
+        var table = page.AddTable();
+
+        // Add 2 columns
+        table.AddColumn();
+        table.AddColumn(300); // Set the width of the second column to 300 pixels
+
+        var row = table.AddRow();
+
+        var assembly = Assembly.GetExecutingAssembly();
+        var directoryName = Path.GetDirectoryName(assembly.Location);
+        var filePath = Path.Combine(directoryName!, "Assets", "logo.png");
+
+        var image = row.Cells[0].AddImage(filePath);
+        image.Width = 62;
+
+        row.Cells[1].Format.LeftIndent = 10;
+        row.Cells[1].AddParagraph("Barbearia do João");
+        row.Cells[1].Format.Font = new Font
+        {
+            Name = FontsHelper.BEBASNEUE_REGULAR,
+            Size = 25
+        };
+        row.Cells[1].VerticalAlignment = VerticalAlignment.Center;
+    }
+
+
+    private byte[] RenderDocument(Document document)
+    {
+        var renderer = new PdfDocumentRenderer
+        {
+            Document = document
+        };
+
+        renderer.RenderDocument();
+
+        using var fileStream = new MemoryStream();
+
+        renderer.PdfDocument.Save(fileStream);
+
+        return fileStream.ToArray();
     }
 }

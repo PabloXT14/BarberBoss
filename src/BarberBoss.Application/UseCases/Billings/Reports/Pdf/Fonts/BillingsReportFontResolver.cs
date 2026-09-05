@@ -27,7 +27,7 @@ public class BillingsReportFontResolver : IFontResolver
 
     private Stream? ReadFontFile(string faceName)
     {
-        var assembly = Assembly.GetExecutingAssembly(); // Get the reference to the Assembly DLL of the current project (CashFlow.Application.dll) where the font files are embedded as resources
+        var assembly = Assembly.GetExecutingAssembly(); // Get the reference to the Assembly DLL of the current project (BarberBoss.Application.dll) where the font files are embedded as resources
 
         return assembly.GetManifestResourceStream($"BarberBoss.Application.UseCases.Billings.Reports.Pdf.Fonts.{faceName}.ttf");
     }

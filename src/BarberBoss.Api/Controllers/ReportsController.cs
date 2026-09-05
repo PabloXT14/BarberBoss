@@ -51,7 +51,7 @@ public class ReportsController : ControllerBase
             return File(
                 file,
                 MediaTypeNames.Application.Pdf,
-                "report.xlsx"
+                "report.pdf"
             );
         }
 

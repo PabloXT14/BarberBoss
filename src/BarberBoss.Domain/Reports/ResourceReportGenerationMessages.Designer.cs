@@ -86,4 +86,9 @@ public class ResourceReportGenerationMessages
 	/// Looks up a localized string similar to Other.
 	/// </summary>
 	public static string OTHER => ResourceManager.GetString("OTHER", Culture);
+	
+	/// <summary>
+	/// Looks up a localized string similar to Billings for.
+	/// </summary>
+	public static string BILLINGS_FOR => ResourceManager.GetString("BILLINGS_FOR", Culture);
 }
