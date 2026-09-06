@@ -52,6 +52,9 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
 
         CreateHeaderWithLogoAndName(page);
 
+        var totalBillings = billings.Sum(billing => billing.Amount);
+        CreateTotalBillingsSection(page, request, totalBillings, culture);
+
         return RenderDocument(document);
     }
 
@@ -110,6 +113,28 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
         row.Cells[1].VerticalAlignment = VerticalAlignment.Center;
     }
 
+    private void CreateTotalBillingsSection(Section page, RequestGenerateBillingsReportJson request, decimal totalBillings, CultureInfo culture)
+    {
+        var paragraph = page.AddParagraph();
+        paragraph.Format.SpaceBefore = 38;
+        paragraph.Format.SpaceAfter = 64;
+
+        var title = $"{ResourceReportGenerationMessages.BILLINGS_FOR} {request.StartDate.ToString("d", culture)} - {request.EndDate.ToString("d", culture)}";
+        paragraph.AddFormattedText(title, new Font
+        {
+            Name = FontsHelper.ROBOTO_MEDIUM,
+            Size = 15
+        });
+
+        paragraph.AddLineBreak();
+
+        var totalCurrencyText = totalBillings.ToString("C", culture);
+        paragraph.AddFormattedText(totalCurrencyText, new Font
+        {
+            Name = FontsHelper.BEBASNEUE_REGULAR,
+            Size = 50
+        });
+    }
 
     private byte[] RenderDocument(Document document)
     {
