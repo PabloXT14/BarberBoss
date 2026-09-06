@@ -55,6 +55,20 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
         var totalBillings = billings.Sum(billing => billing.Amount);
         CreateTotalBillingsSection(page, request, totalBillings, culture);
 
+        foreach (var billing in billings)
+        {
+            var table = CreateBillingsTable(page);
+
+            var row = table.AddRow();
+            row.Height = HEIGHT_ROW_TABLE;
+
+            AddBillingTitle(row.Cells[0], billing.ServiceName);
+
+            AddHeaderForAmount(row.Cells[3]);
+
+            AddWhiteSpace(table);
+        }
+
         return RenderDocument(document);
     }
 
@@ -134,6 +148,57 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
             Name = FontsHelper.BEBASNEUE_REGULAR,
             Size = 50
         });
+    }
+
+    private Table CreateBillingsTable(Section page)
+    {
+        var table = page.AddTable();
+
+        // ADD COLUMNS
+        table.AddColumn(195).Format.Alignment = ParagraphAlignment.Left;
+        table.AddColumn(129).Format.Alignment = ParagraphAlignment.Center;
+        table.AddColumn(129).Format.Alignment = ParagraphAlignment.Center;
+        table.AddColumn(70).Format.Alignment = ParagraphAlignment.Right;
+
+        return table;
+    }
+
+    private void AddBillingTitle(Cell cell, string serviceName)
+    {
+        cell.AddParagraph(serviceName);
+        cell.Format.Font = new Font
+        {
+            Name = FontsHelper.BEBASNEUE_REGULAR,
+            Size = 15,
+            Color = ColorsHelper.WHITE
+        };
+
+        cell.Shading.Color = ColorsHelper.GREEN_900;
+        cell.VerticalAlignment = VerticalAlignment.Center;
+        cell.MergeRight = 2; // Merge the first cell with the next two cells
+        cell.Format.LeftIndent = 8;
+    }
+
+    private void AddHeaderForAmount(Cell cell)
+    {
+        cell.AddParagraph(ResourceReportGenerationMessages.AMOUNT);
+        cell.Format.Font = new Font
+        {
+            Name = FontsHelper.BEBASNEUE_REGULAR,
+            Size = 15,
+            Color = ColorsHelper.WHITE
+        };
+
+        cell.Shading.Color = ColorsHelper.GREEN_500;
+        cell.VerticalAlignment = VerticalAlignment.Center;
+    }
+
+
+    private void AddWhiteSpace(Table table)
+    {
+        var row = table.AddRow();
+        row.Height = 16;
+        row.Borders.Visible = false; // Hide the borders for the whitespace row (just for safety, as it should be invisible by default)
     }
 
     private byte[] RenderDocument(Document document)
