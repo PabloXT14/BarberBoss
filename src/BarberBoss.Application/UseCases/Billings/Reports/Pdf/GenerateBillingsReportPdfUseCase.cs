@@ -85,6 +85,13 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
             AddAmountForBilling(row.Cells[3], billing.Amount, culture);
 
             // THIRD ROW (optional)
+            if (!string.IsNullOrWhiteSpace(billing.Notes))
+            {
+                var descriptionRow = table.AddRow();
+                descriptionRow.Height = HEIGHT_ROW_TABLE;
+
+                AddNoteForBilling(descriptionRow.Cells[0], billing.Notes);
+            }
 
             AddWhiteSpace(table);
         }
@@ -244,6 +251,21 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
         cell.Format.RightIndent = 4;
     }
 
+    private void AddNoteForBilling(Cell cell, string note)
+    {
+        cell.AddParagraph(note);
+        cell.Format.Font = new Font
+        {
+            Name = FontsHelper.ROBOTO_REGULAR,
+            Size = 9,
+            Color = ColorsHelper.GRAY_500
+        };
+
+        cell.Shading.Color = ColorsHelper.GREEN_50;
+        cell.VerticalAlignment = VerticalAlignment.Center;
+        cell.MergeRight = 2;
+        cell.Format.LeftIndent = 8;
+    }
 
     private void AddWhiteSpace(Table table)
     {
