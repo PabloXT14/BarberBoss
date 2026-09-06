@@ -3,6 +3,7 @@ using System.Reflection;
 using BarberBoss.Application.UseCases.Billings.Reports.Pdf.Colors;
 using BarberBoss.Application.UseCases.Billings.Reports.Pdf.Fonts;
 using BarberBoss.Communication.Requests;
+using BarberBoss.Domain.Extensions;
 using BarberBoss.Domain.Reports;
 using BarberBoss.Domain.Repositories.Billings;
 using BarberBoss.Exception;
@@ -65,6 +66,25 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
             AddBillingTitle(row.Cells[0], billing.ServiceName);
 
             AddHeaderForAmount(row.Cells[3]);
+
+            // SECOND ROW
+            row = table.AddRow();
+            row.Height = HEIGHT_ROW_TABLE;
+
+            SetStyleBaseForBillingInformation(row.Cells[0]);
+            row.Cells[0].AddParagraph(billing.Date.ToString("D", culture));
+            row.Cells[0].Format.LeftIndent = 8;
+
+            SetStyleBaseForBillingInformation(row.Cells[1]);
+            row.Cells[1].AddParagraph(billing.Date.ToString("t", culture));
+
+            SetStyleBaseForBillingInformation(row.Cells[2]);
+            row.Cells[2].AddParagraph(billing.PaymentMethod.PaymentMethodToString());
+            row.Cells[2].Format.Alignment = ParagraphAlignment.Center;
+
+            AddAmountForBilling(row.Cells[3], billing.Amount, culture);
+
+            // THIRD ROW (optional)
 
             AddWhiteSpace(table);
         }
@@ -191,6 +211,37 @@ public class GenerateBillingsReportPdfUseCase : IGenerateBillingsReportPdfUseCas
 
         cell.Shading.Color = ColorsHelper.GREEN_500;
         cell.VerticalAlignment = VerticalAlignment.Center;
+        cell.Format.RightIndent = 4;
+    }
+
+    private void SetStyleBaseForBillingInformation(Cell cell)
+    {
+        cell.Format.Font = new Font
+        {
+            Name = FontsHelper.ROBOTO_REGULAR,
+            Size = 10,
+            Color = ColorsHelper.BLACK
+        };
+
+        cell.Shading.Color = ColorsHelper.GREEN_100;
+        cell.VerticalAlignment = VerticalAlignment.Center;
+    }
+
+    private void AddAmountForBilling(Cell cell, decimal amount, CultureInfo culture)
+    {
+        var amountCurrencyText = amount.ToString("C", culture);
+
+        cell.AddParagraph(amountCurrencyText);
+        cell.Format.Font = new Font
+        {
+            Name = FontsHelper.ROBOTO_REGULAR,
+            Size = 10,
+            Color = ColorsHelper.BLACK
+        };
+
+        cell.Shading.Color = ColorsHelper.WHITE;
+        cell.VerticalAlignment = VerticalAlignment.Center;
+        cell.Format.RightIndent = 4;
     }
 
 
