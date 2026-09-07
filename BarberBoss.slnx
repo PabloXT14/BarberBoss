@@ -7,4 +7,8 @@
     <Project Path="src/BarberBoss.Exception/BarberBoss.Exception.csproj" />
     <Project Path="src/BarberBoss.Infrastructure/BarberBoss.Infrastructure.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CommonTestUtilities/CommonTestUtilities.csproj" />
+    <Project Path="tests/Validators.Tests/Validators.Tests.csproj" />
+  </Folder>
 </Solution>
